@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markkhn's Homepage</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .profile-section {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .profile-img {
+            width: 200px;
+            border: 3px solid #007bff;
+            border-radius: 50%;
+        }
+        .section-title {
+            color: #2c3e50;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 0.5em;
+        }
+        .research-interest-badge {
+            margin: 5px;
+            background-color: #e9ecef;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body class="py-4">
+    <div class="container">
+        <!-- Header Section -->
+        <header class="text-center mb-5 profile-section p-4">
+            <img src="https://via.placeholder.com/200" alt="Profile Photo" class="profile-img mb-3">
+            <h1 class="mb-3">markkhn</h1>
+            <p class="lead text-muted">Computer Science Student | AI Enthusiast</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="mb-4">
+            <ul class="nav justify-content-center">
+                <li class="nav-item"><a href="#about" class="nav-link active">About</a></li>
+                <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
+                <li class="nav-item"><a href="#research" class="nav-link">Research Interests</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- About Section -->
+        <section id="about" class="mb-5 profile-section p-4">
+            <h2 class="section-title mb-4">About Me</h2>
+            <p class="lead">
+                A passionate computer science student with a focus on machine learning and human-computer interaction. 
+                Currently exploring deep learning applications in healthcare.
+            </p>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="mb-5 profile-section p-4">
+            <h2 class="section-title mb-4">Education</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <h4>University of Technology</h4>
+                    <p class="text-muted">B.Sc. in Computer Science<br>
+                    <small>2020 - 2024</small></p>
+                    <ul>
+                        <li>GPA: 3.8/4.0</li>
+                        <li>Relevant Coursework: Machine Learning, Algorithms, Data Structures</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h4>Online Learning</h4>
+                    <p class="text-muted">Specializations:<br>
+                    <small>2021 - Present</small></p>
+                    <ul>
+                        <li>Deep Learning Specialization (Coursera)</li>
+                        <li>Full-Stack Development (Udacity)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Interests -->
+        <section id="research" class="mb-5 profile-section p-4">
+            <h2 class="section-title mb-4">Research Interests</h2>
+            <div class="mb-3">
+                <span class="badge research-interest-badge">Deep Learning</span>
+                <span class="badge research-interest-badge">Computer Vision</span>
+                <span class="badge research-interest-badge">AI in Healthcare</span>
+                <span class="badge research-interest-badge">Human-Centered AI</span>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Current Projects</h4>
+                    <ul>
+                        <li>Medical Image Analysis using CNNs</li>
+                        <li>AI-powered Diagnostic Tools</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h4>Future Directions</h4>
+                    <ul>
+                        <li>Explainable AI in Clinical Settings</li>
+                        <li>Multimodal Learning for Healthcare</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="profile-section p-4">
+            <h2 class="section-title mb-4">Contact</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>
+                        📧 <a href="mailto:john.doe@email.com">john.doe@email.com</a><br>
+                        💼 <a href="https://linkedin.com/in/johndoe">LinkedIn Profile</a>
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        🐱 <a href="https://github.com/johndoe">GitHub Profile</a><br>
+                        📄 <a href="cv.pdf">Download CV</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
