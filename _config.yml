@@ -4,7 +4,7 @@ description: >-
   电子工程 | AI | Coding | 现代极简博客
 baseurl: ""
 url: "https://markkhn.github.io"
-theme: minimal-mistakes-jekyll
+remote_theme: "mmistakes/minimal-mistakes"
 locale: zh-CN
 logo: /assets/images/Profile_photo.png
 
