@@ -1,10 +1,10 @@
 title: "markkhn's Blog"
 email: markkhn@sjtu.edu.cn
 description: >-
-  电子工程 | AI | Coding | 现代极简博客
+  电子工程 | AI | Coding | 极简博客
 baseurl: ""
 url: "https://markkhn.github.io"
-remote_theme: "mmistakes/minimal-mistakes@4.24.0"
+theme: jekyll-theme-minimal
 locale: zh-CN
 logo: /assets/images/Profile_photo.png
 
