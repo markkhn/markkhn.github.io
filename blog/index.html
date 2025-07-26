@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markkhn's Blog</title>
+    <title>Blog - Markkhn's Homepage</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -22,89 +22,89 @@
             border-bottom: 2px solid #007bff;
             padding-bottom: 0.5em;
         }
+        .back-link {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
         .blog-card {
-            transition: transform 0.2s;
             border: 1px solid #e9ecef;
+            border-radius: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
         .blog-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-        .blog-date {
+        .blog-meta {
             color: #6c757d;
             font-size: 0.9em;
         }
-        .back-home {
-            color: #007bff;
-            text-decoration: none;
-        }
-        .back-home:hover {
-            text-decoration: underline;
+        .tag-badge {
+            background-color: #e9ecef;
+            color: #2c3e50;
+            font-size: 0.8em;
         }
     </style>
 </head>
 <body class="py-4">
     <div class="container">
         <!-- Header -->
-        <header class="text-center mb-5">
-            <a href="../" class="back-home mb-3 d-inline-block">← Back to Home</a>
+        <header class="mb-4">
+            <a href="../index.html" class="back-link mb-3 d-inline-block">← Back to Homepage</a>
             <h1 class="section-title">Blog</h1>
-            <p class="lead text-muted">Thoughts on AI, Technology, and Life</p>
+            <p class="lead text-muted">Thoughts on AI, Technology, and Research</p>
         </header>
 
         <!-- Blog Posts -->
-        <section class="blog-section p-4">
-            <div class="row" id="blog-posts">
-                <!-- Blog posts will be dynamically loaded here -->
-                <div class="col-12 text-center">
-                    <p class="text-muted">Loading blog posts...</p>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="blog-section p-4 mb-4">
+                    <article class="blog-card p-3 mb-3">
+                        <h3><a href="example_post.html" class="text-decoration-none text-dark">My First Blog Post</a></h3>
+                        <div class="blog-meta mb-2">
+                            <span>📅 2024-01-15</span>
+                            <span class="ms-3">🏷️ AI</span>
+                            <span class="ms-2">🏷️ Technology</span>
+                            <span class="ms-2">🏷️ Research</span>
+                        </div>
+                        <p class="text-muted">
+                            Hello everyone! This is my first blog post where I'll be sharing my thoughts on artificial intelligence, 
+                            technology, and my research journey. I've been working on several exciting projects lately, and I wanted 
+                            to share some of my experiences and insights with the community.
+                        </p>
+                        <a href="example_post.html" class="btn btn-outline-primary btn-sm">Read More →</a>
+                    </article>
                 </div>
             </div>
-        </section>
+            
+            <!-- Sidebar -->
+            <div class="col-md-4">
+                <div class="blog-section p-4">
+                    <h4>Categories</h4>
+                    <div class="mb-3">
+                        <span class="badge tag-badge me-1 mb-1">AI</span>
+                        <span class="badge tag-badge me-1 mb-1">Technology</span>
+                        <span class="badge tag-badge me-1 mb-1">Research</span>
+                        <span class="badge tag-badge me-1 mb-1">Deep Learning</span>
+                        <span class="badge tag-badge me-1 mb-1">Computer Vision</span>
+                    </div>
+                    
+                    <h4>Recent Posts</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="example_post.html" class="text-decoration-none">My First Blog Post</a>
+                            <br><small class="text-muted">2024-01-15</small>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Blog loader script -->
-    <script>
-        // Function to load blog posts
-        async function loadBlogPosts() {
-            try {
-                const response = await fetch('posts.json');
-                const posts = await response.json();
-                
-                const blogContainer = document.getElementById('blog-posts');
-                blogContainer.innerHTML = '';
-                
-                posts.forEach(post => {
-                    const postElement = document.createElement('div');
-                    postElement.className = 'col-md-6 col-lg-4 mb-4';
-                    postElement.innerHTML = `
-                        <div class="card blog-card h-100">
-                            <div class="card-body">
-                                <h5 class="card-title">${post.title}</h5>
-                                <p class="blog-date">${post.date}</p>
-                                <p class="card-text">${post.excerpt}</p>
-                                <a href="${post.filename}" class="btn btn-primary btn-sm">Read More</a>
-                            </div>
-                        </div>
-                    `;
-                    blogContainer.appendChild(postElement);
-                });
-            } catch (error) {
-                console.error('Error loading blog posts:', error);
-                document.getElementById('blog-posts').innerHTML = `
-                    <div class="col-12 text-center">
-                        <p class="text-muted">No blog posts available yet.</p>
-                        <p class="text-muted">Check back soon for new content!</p>
-                    </div>
-                `;
-            }
-        }
-
-        // Load blog posts when page loads
-        document.addEventListener('DOMContentLoaded', loadBlogPosts);
-    </script>
 </body>
 </html> 
