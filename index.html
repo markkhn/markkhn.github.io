@@ -40,7 +40,7 @@
         <header class="text-center mb-5 profile-section p-4">
             <img src="assets/images/Profile_photo.png" alt="Profile Photo" class="profile-img mb-3">
             <h1 class="mb-3">markkhn</h1>
-            <p class="lead text-muted">Eletronic Engineering Student | AI and Coding Enthusiast</p>
+            <p class="lead text-muted">Electronic Engineering Student | AI and Coding Enthusiast</p>
         </header>
 
         <!-- Navigation -->
@@ -49,8 +49,8 @@
                 <li class="nav-item"><a href="#about" class="nav-link active">About</a></li>
                 <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
                 <li class="nav-item"><a href="#research" class="nav-link">Research Interests</a></li>
+                <li class="nav-item"><a href="blog/" class="nav-link">Blog</a></li>
                 <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
-                <li class="nav-item"><a href="#blog" class="nav-link">Blog</a></li>
             </ul>
         </nav>
 
@@ -68,7 +68,7 @@
             <div class="row">
                 <div class="col-md-6 mb-4">
                     <h4>Shanghai Jiao Tong University</h4>
-                    <p class="text-muted">B.Sc. in Eletronic Engineering<br>
+                    <p class="text-muted">B.Sc. in Electronic Engineering<br>
                     <small>2018- 2024</small></p>
                     <ul>
                         <li>Relevant Coursework: Machine Learning, Signal and System, Data Structures</li>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="col-md-6">
                     <h4>Shanghai Jiao Tong University</h4>
-                    <p class="text-muted">M.Sc. in Eletronic Engineering<br>
+                    <p class="text-muted">M.Sc. in Electronic Engineering<br>
                     <small>2024 - Present</small></p>
                     <ul>
                         <li>Radar Recognition</li>
@@ -118,7 +118,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <p>
-                        📧 <a href="mailto:markkhn@email.com">markkhn@sjtu.edu.cn</a><br>
+                        📧 <a href="mailto:markkhn@sjtu.edu.cn">markkhn@sjtu.edu.cn</a><br>
                     </p>
                 </div>
                 <div class="col-md-6">
@@ -130,65 +130,7 @@
         </section>
     </div>
 
-    <!-- Blog Section -->
-    <section id="blog" class="mb-5 profile-section p-4" style="display:none;">
-        <h2 class="section-title mb-4">Blog</h2>
-        <div id="blog-list"></div>
-        <div id="blog-content" style="display:none;">
-            <button class="btn btn-secondary mb-3" onclick="showBlogList()">Back to List</button>
-            <div id="blog-markdown"></div>
-        </div>
-    </section>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Marked.js for Markdown rendering -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <!-- Blog List -->
-    <script src="blog/blog_list.js"></script>
-    <script>
-    function showSection(sectionId) {
-        document.querySelectorAll('section').forEach(sec => sec.style.display = 'none');
-        document.getElementById(sectionId).style.display = '';
-    }
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (href.startsWith('#')) {
-                e.preventDefault();
-                showSection(href.substring(1));
-            }
-        });
-    });
-    // Blog logic
-    function showBlogList() {
-        document.getElementById('blog-list').style.display = '';
-        document.getElementById('blog-content').style.display = 'none';
-    }
-    function showBlogContent(file, title) {
-        fetch('blog/' + file)
-            .then(res => res.text())
-            .then(md => {
-                document.getElementById('blog-markdown').innerHTML = marked.parse(md);
-                document.getElementById('blog-list').style.display = 'none';
-                document.getElementById('blog-content').style.display = '';
-            });
-    }
-    function renderBlogList() {
-        const listDiv = document.getElementById('blog-list');
-        listDiv.innerHTML = '';
-        if (typeof blogList === 'undefined' || blogList.length === 0) {
-            listDiv.innerHTML = '<p>No blog posts yet.</p>';
-            return;
-        }
-        blogList.forEach(blog => {
-            const item = document.createElement('div');
-            item.innerHTML = `<a href="#" onclick="showBlogContent('${blog.file}', '${blog.title}');return false;"><strong>${blog.title}</strong> <span class="text-muted">(${blog.date})</span></a>`;
-            listDiv.appendChild(item);
-        });
-    }
-    window.onload = function() {
-        renderBlogList();
-    };
-    </script>
 </body>
 </html>
