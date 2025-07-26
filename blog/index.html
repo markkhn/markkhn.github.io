@@ -51,6 +51,26 @@
             background-color: #e9ecef;
             color: #2c3e50;
             font-size: 0.8em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .tag-badge:hover {
+            background-color: #007bff;
+            color: white;
+            transform: translateY(-1px);
+        }
+        .tag-badge.active {
+            background-color: #007bff;
+            color: white;
+        }
+        .blog-card {
+            transition: all 0.3s ease;
+        }
+        .blog-card.hidden {
+            display: none;
+        }
+        .filter-tag {
+            user-select: none;
         }
         .markdown-content {
             line-height: 1.6;
@@ -117,11 +137,15 @@
                 <div class="blog-section p-4">
                     <h4>Categories</h4>
                     <div class="mb-3" id="categories">
-                        <span class="badge tag-badge me-1 mb-1">AI</span>
-                        <span class="badge tag-badge me-1 mb-1">Technology</span>
-                        <span class="badge tag-badge me-1 mb-1">Research</span>
-                        <span class="badge tag-badge me-1 mb-1">Deep Learning</span>
-                        <span class="badge tag-badge me-1 mb-1">Computer Vision</span>
+                        <span class="badge tag-badge me-1 mb-1 filter-tag" data-tag="all">All</span>
+                        <span class="badge tag-badge me-1 mb-1 filter-tag" data-tag="AI">AI</span>
+                        <span class="badge tag-badge me-1 mb-1 filter-tag" data-tag="Technology">Technology</span>
+                        <span class="badge tag-badge me-1 mb-1 filter-tag" data-tag="Research">Research</span>
+                        <span class="badge tag-badge me-1 mb-1 filter-tag" data-tag="Deep Learning">Deep Learning</span>
+                        <span class="badge tag-badge me-1 mb-1 filter-tag" data-tag="Computer Vision">Computer Vision</span>
+                        <span class="badge tag-badge me-1 mb-1 filter-tag" data-tag="Healthcare">Healthcare</span>
+                        <span class="badge tag-badge me-1 mb-1 filter-tag" data-tag="Radar">Radar</span>
+                        <span class="badge tag-badge me-1 mb-1 filter-tag" data-tag="Music">Music</span>
                     </div>
                     
                     <h4>Recent Posts</h4>
@@ -160,7 +184,7 @@
                 id: 'first-blog-post',
                 title: 'My First Blog Post',
                 date: '2024-01-15',
-                tags: ['AI', 'Technology', 'Research'],
+                tags: ['AI', 'Technology', 'Research', 'Music'],
                 filename: 'first-blog-post.md',
                 excerpt: 'Hello everyone! This is my first blog post where I\'ll be sharing my thoughts on artificial intelligence, technology, and my research journey.'
             },
@@ -171,6 +195,22 @@
                 tags: ['AI', 'Deep Learning', 'Radar', 'Computer Vision'],
                 filename: 'deep-learning-radar.md',
                 excerpt: 'Exploring the applications of deep learning in radar signal processing and object detection.'
+            },
+            {
+                id: 'ai-in-healthcare',
+                title: 'AI in Healthcare: Current Trends and Future Prospects',
+                date: '2024-01-25',
+                tags: ['AI', 'Healthcare', 'Technology', 'Research'],
+                filename: 'ai-in-healthcare.md',
+                excerpt: 'Exploring the intersection of AI and healthcare, covering current applications and future prospects.'
+            },
+            {
+                id: 'ai-music-generation',
+                title: 'AI in Music Generation: From Theory to Practice',
+                date: '2024-01-30',
+                tags: ['AI', 'Music', 'Technology', 'Research'],
+                filename: 'ai-music-generation.md',
+                excerpt: 'Exploring the fascinating intersection of AI and music, covering both theoretical concepts and practical implementations.'
             }
         ];
 
@@ -189,7 +229,7 @@
                 ).join('');
 
                 postsHTML += `
-                    <article class="blog-card p-3 mb-3">
+                    <article class="blog-card p-3 mb-3" data-tags="${post.tags.join(',')}">
                         <h3><a href="post.html?id=${post.id}" class="text-decoration-none text-dark">${post.title}</a></h3>
                         <div class="blog-meta mb-2">
                             <span>📅 ${post.date}</span>
@@ -211,6 +251,70 @@
 
             blogPostsContainer.innerHTML = postsHTML;
             recentPostsContainer.innerHTML = recentPostsHTML;
+            
+            // Initialize filter functionality
+            initializeFilter();
+        }
+
+        // Filter functionality
+        function initializeFilter() {
+            const filterTags = document.querySelectorAll('.filter-tag');
+            const blogCards = document.querySelectorAll('.blog-card');
+            
+            // Update tag counts
+            updateTagCounts();
+            
+            filterTags.forEach(tag => {
+                tag.addEventListener('click', function() {
+                    const selectedTag = this.getAttribute('data-tag');
+                    
+                    // Update active state
+                    filterTags.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter blog posts
+                    filterBlogPosts(selectedTag);
+                });
+            });
+            
+            // Set "All" as default active
+            document.querySelector('[data-tag="all"]').classList.add('active');
+        }
+
+        // Update tag counts
+        function updateTagCounts() {
+            const tagCounts = {};
+            
+            // Count posts for each tag
+            blogPosts.forEach(post => {
+                post.tags.forEach(tag => {
+                    tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+                });
+            });
+            
+            // Update tag badges with counts
+            const filterTags = document.querySelectorAll('.filter-tag');
+            filterTags.forEach(tag => {
+                const tagName = tag.getAttribute('data-tag');
+                if (tagName !== 'all') {
+                    const count = tagCounts[tagName] || 0;
+                    tag.textContent = `${tagName} (${count})`;
+                }
+            });
+        }
+
+        function filterBlogPosts(selectedTag) {
+            const blogCards = document.querySelectorAll('.blog-card');
+            
+            blogCards.forEach(card => {
+                const cardTags = card.getAttribute('data-tags').split(',');
+                
+                if (selectedTag === 'all' || cardTags.includes(selectedTag)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
         }
 
         // Initialize

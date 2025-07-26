@@ -118,6 +118,13 @@
                             <br><small class="text-muted">Loading...</small>
                         </li>
                     </ul>
+                    
+                    <hr class="my-4">
+                    
+                    <h4>Categories</h4>
+                    <div class="mb-3" id="post-categories">
+                        <span class="badge tag-badge me-1 mb-1">Loading...</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -158,6 +165,22 @@
                 tags: ['AI', 'Deep Learning', 'Radar', 'Computer Vision'],
                 filename: 'deep-learning-radar.md',
                 excerpt: 'Exploring the applications of deep learning in radar signal processing and object detection.'
+            },
+            {
+                id: 'ai-in-healthcare',
+                title: 'AI in Healthcare: Current Trends and Future Prospects',
+                date: '2024-01-25',
+                tags: ['AI', 'Healthcare', 'Technology', 'Research'],
+                filename: 'ai-in-healthcare.md',
+                excerpt: 'Exploring the intersection of AI and healthcare, covering current applications and future prospects.'
+            },
+            {
+                id: 'ai-music-generation',
+                title: 'AI in Music Generation: From Theory to Practice',
+                date: '2024-01-30',
+                tags: ['AI', 'Music', 'Technology', 'Research'],
+                filename: 'ai-music-generation.md',
+                excerpt: 'Exploring the fascinating intersection of AI and music, covering both theoretical concepts and practical implementations.'
             }
         ];
 
@@ -242,24 +265,60 @@ To add real content, create the file \`posts/${post.filename}\` with your Markdo
 
             // Load related posts
             loadRelatedPosts(post);
+            
+            // Load post categories
+            loadPostCategories(post);
         }
 
         // Load related posts
         function loadRelatedPosts(currentPost) {
-            const relatedPosts = blogPosts.filter(p => p.id !== currentPost.id);
+            const otherPosts = blogPosts.filter(p => p.id !== currentPost.id);
             const relatedPostsContainer = document.getElementById('related-posts');
             
+            // Calculate similarity based on tags
+            const postsWithSimilarity = otherPosts.map(post => {
+                const commonTags = currentPost.tags.filter(tag => post.tags.includes(tag));
+                const similarity = commonTags.length / Math.max(currentPost.tags.length, post.tags.length);
+                return { ...post, similarity };
+            });
+            
+            // Sort by similarity and take top 3
+            const relatedPosts = postsWithSimilarity
+                .sort((a, b) => b.similarity - a.similarity)
+                .slice(0, 3);
+            
             let relatedPostsHTML = '';
-            for (const post of relatedPosts) {
-                relatedPostsHTML += `
-                    <li class="mb-2">
-                        <a href="post.html?id=${post.id}" class="text-decoration-none">${post.title}</a>
-                        <br><small class="text-muted">${post.date}</small>
-                    </li>
-                `;
+            if (relatedPosts.length > 0) {
+                for (const post of relatedPosts) {
+                    const commonTags = currentPost.tags.filter(tag => post.tags.includes(tag));
+                    const tagInfo = commonTags.length > 0 ? 
+                        `<br><small class="text-muted">Related: ${commonTags.join(', ')}</small>` : '';
+                    
+                    relatedPostsHTML += `
+                        <li class="mb-2">
+                            <a href="post.html?id=${post.id}" class="text-decoration-none">${post.title}</a>
+                            <br><small class="text-muted">${post.date}</small>
+                            ${tagInfo}
+                        </li>
+                    `;
+                }
+            } else {
+                relatedPostsHTML = '<li class="text-muted">No related posts found</li>';
             }
             
             relatedPostsContainer.innerHTML = relatedPostsHTML;
+        }
+
+        // Load post categories
+        function loadPostCategories(post) {
+            const categoriesContainer = document.getElementById('post-categories');
+            
+            let categoriesHTML = '';
+            for (const tag of post.tags) {
+                categoriesHTML += `<span class="badge tag-badge me-1 mb-1">${tag}</span>`;
+            }
+            
+            categoriesContainer.innerHTML = categoriesHTML;
         }
 
         // Initialize
