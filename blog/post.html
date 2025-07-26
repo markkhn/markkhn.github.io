@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Markkhn's Homepage</title>
+    <title>Blog Post - Markkhn's Blog</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Marked.js for Markdown parsing -->
@@ -17,7 +17,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f8f9fa;
         }
-        .blog-section {
+        .blog-content {
             background-color: white;
             border-radius: 15px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -34,23 +34,9 @@
         .back-link:hover {
             text-decoration: underline;
         }
-        .blog-card {
-            border: 1px solid #e9ecef;
-            border-radius: 10px;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .blog-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
         .blog-meta {
             color: #6c757d;
             font-size: 0.9em;
-        }
-        .tag-badge {
-            background-color: #e9ecef;
-            color: #2c3e50;
-            font-size: 0.8em;
         }
         .markdown-content {
             line-height: 1.6;
@@ -91,41 +77,42 @@
             padding: 2rem;
             color: #6c757d;
         }
+        .tag-badge {
+            background-color: #e9ecef;
+            color: #2c3e50;
+            font-size: 0.8em;
+        }
     </style>
 </head>
 <body class="py-4">
     <div class="container">
         <!-- Header -->
         <header class="mb-4">
-            <a href="../index.html" class="back-link mb-3 d-inline-block">← Back to Homepage</a>
-            <h1 class="section-title">Blog</h1>
-            <p class="lead text-muted">Thoughts on AI, Technology, and Research</p>
+            <a href="index.html" class="back-link mb-3 d-inline-block">← Back to Blog</a>
         </header>
 
-        <!-- Blog Posts -->
+        <!-- Blog Content -->
         <div class="row">
             <div class="col-md-8">
-                <div class="blog-section p-4 mb-4">
-                    <div id="blog-posts">
-                        <div class="loading">Loading posts...</div>
+                <article class="blog-content p-4">
+                    <header class="mb-4">
+                        <h1 class="section-title" id="post-title">Loading...</h1>
+                        <div class="blog-meta" id="post-meta">
+                            <span>📅 Loading...</span>
+                        </div>
+                    </header>
+
+                    <div class="markdown-content" id="post-content">
+                        <div class="loading">Loading post content...</div>
                     </div>
-                </div>
+                </article>
             </div>
             
             <!-- Sidebar -->
             <div class="col-md-4">
-                <div class="blog-section p-4">
-                    <h4>Categories</h4>
-                    <div class="mb-3" id="categories">
-                        <span class="badge tag-badge me-1 mb-1">AI</span>
-                        <span class="badge tag-badge me-1 mb-1">Technology</span>
-                        <span class="badge tag-badge me-1 mb-1">Research</span>
-                        <span class="badge tag-badge me-1 mb-1">Deep Learning</span>
-                        <span class="badge tag-badge me-1 mb-1">Computer Vision</span>
-                    </div>
-                    
-                    <h4>Recent Posts</h4>
-                    <ul class="list-unstyled" id="recent-posts">
+                <div class="blog-content p-4">
+                    <h4>Related Posts</h4>
+                    <ul class="list-unstyled" id="related-posts">
                         <li class="mb-2">
                             <a href="#" class="text-decoration-none">Loading...</a>
                             <br><small class="text-muted">Loading...</small>
@@ -139,7 +126,7 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- Blog JavaScript -->
+    <!-- Blog Post JavaScript -->
     <script>
         // Configure marked.js
         marked.setOptions({
@@ -174,47 +161,109 @@
             }
         ];
 
-        // Load blog posts
-        async function loadBlogPosts() {
-            const blogPostsContainer = document.getElementById('blog-posts');
-            const recentPostsContainer = document.getElementById('recent-posts');
+        // Get post ID from URL
+        function getPostId() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id');
+        }
+
+        // Load blog post
+        async function loadBlogPost() {
+            const postId = getPostId();
+            const post = blogPosts.find(p => p.id === postId);
             
-            let postsHTML = '';
-            let recentPostsHTML = '';
+            if (!post) {
+                document.getElementById('post-title').textContent = 'Post Not Found';
+                document.getElementById('post-content').innerHTML = '<p>Sorry, the requested blog post could not be found.</p>';
+                return;
+            }
 
-            for (const post of blogPosts) {
-                // Create blog post card
-                const tagsHTML = post.tags.map(tag => 
-                    `<span class="badge tag-badge me-1">${tag}</span>`
-                ).join('');
+            // Update title and meta
+            document.title = `${post.title} - Markkhn's Blog`;
+            document.getElementById('post-title').textContent = post.title;
+            
+            const tagsHTML = post.tags.map(tag => 
+                `<span class="badge tag-badge me-1">${tag}</span>`
+            ).join('');
+            
+            document.getElementById('post-meta').innerHTML = `
+                <span>📅 ${post.date}</span>
+                <span class="ms-3">🏷️ ${post.tags.join('</span><span class="ms-2">🏷️ ')}</span>
+            `;
 
-                postsHTML += `
-                    <article class="blog-card p-3 mb-3">
-                        <h3><a href="post.html?id=${post.id}" class="text-decoration-none text-dark">${post.title}</a></h3>
-                        <div class="blog-meta mb-2">
-                            <span>📅 ${post.date}</span>
-                            <span class="ms-3">🏷️ ${post.tags.join('</span><span class="ms-2">🏷️ ')}</span>
-                        </div>
-                        <p class="text-muted">${post.excerpt}</p>
-                        <a href="post.html?id=${post.id}" class="btn btn-outline-primary btn-sm">Read More →</a>
-                    </article>
+            // Load markdown content
+            try {
+                const response = await fetch(`posts/${post.filename}`);
+                if (!response.ok) {
+                    throw new Error('Markdown file not found');
+                }
+                const markdown = await response.text();
+                const html = marked.parse(markdown);
+                document.getElementById('post-content').innerHTML = html;
+                
+                // Highlight code blocks
+                hljs.highlightAll();
+            } catch (error) {
+                // If markdown file doesn't exist, show a placeholder
+                const placeholderContent = `
+# ${post.title}
+
+This is a placeholder for the blog post "${post.title}". 
+
+The actual markdown file (${post.filename}) would be loaded here.
+
+## About This Post
+
+This post would contain the full content written in Markdown format.
+
+## Features
+
+- **Markdown Support**: Write posts in Markdown
+- **Code Highlighting**: Syntax highlighting for code blocks
+- **Responsive Design**: Works on all devices
+- **Easy to Maintain**: Simple file structure
+
+## Code Example
+
+\`\`\`python
+def hello_world():
+    print("Hello, World!")
+    return "Success"
+\`\`\`
+
+## Next Steps
+
+To add real content, create the file \`posts/${post.filename}\` with your Markdown content.
                 `;
+                const html = marked.parse(placeholderContent);
+                document.getElementById('post-content').innerHTML = html;
+                hljs.highlightAll();
+            }
 
-                // Add to recent posts
-                recentPostsHTML += `
+            // Load related posts
+            loadRelatedPosts(post);
+        }
+
+        // Load related posts
+        function loadRelatedPosts(currentPost) {
+            const relatedPosts = blogPosts.filter(p => p.id !== currentPost.id);
+            const relatedPostsContainer = document.getElementById('related-posts');
+            
+            let relatedPostsHTML = '';
+            for (const post of relatedPosts) {
+                relatedPostsHTML += `
                     <li class="mb-2">
                         <a href="post.html?id=${post.id}" class="text-decoration-none">${post.title}</a>
                         <br><small class="text-muted">${post.date}</small>
                     </li>
                 `;
             }
-
-            blogPostsContainer.innerHTML = postsHTML;
-            recentPostsContainer.innerHTML = recentPostsHTML;
+            
+            relatedPostsContainer.innerHTML = relatedPostsHTML;
         }
 
         // Initialize
-        document.addEventListener('DOMContentLoaded', loadBlogPosts);
+        document.addEventListener('DOMContentLoaded', loadBlogPost);
     </script>
 </body>
 </html> 
