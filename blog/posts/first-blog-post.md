@@ -1,5 +1,3 @@
-# My First Blog Post
-
 Hello everyone! This is my first blog post where I'll be sharing my thoughts on artificial intelligence, technology, and my research journey.
 
 ## About This Post

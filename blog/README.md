@@ -15,6 +15,8 @@ This is a Markdown-based blog system for the personal homepage.
 blog/
 ├── index.html          # Blog homepage
 ├── post.html           # Blog post viewer
+├── posts.json          # Blog posts data (NEW!)
+├── add_post.py         # Post management script (NEW!)
 ├── posts/              # Markdown files directory
 │   ├── first-blog-post.md
 │   └── deep-learning-radar.md
@@ -28,9 +30,9 @@ blog/
 Create a new `.md` file in the `posts/` directory:
 
 ```markdown
-# Your Blog Post Title
+## Introduction
 
-Your content here...
+Your content here... **Note: Don't write the title at the beginning of the Markdown file, as it will be automatically retrieved from the blog data.**
 
 ## Section 1
 
@@ -54,20 +56,27 @@ Your conclusion...
 
 ### 2. Update Blog Posts Data
 
-Edit the `blogPosts` array in both `index.html` and `post.html`:
+**方法1: 使用管理脚本（推荐）**
+```bash
+cd blog
+python add_post.py add
+```
 
-```javascript
-const blogPosts = [
+**方法2: 手动编辑 posts.json**
+```json
+{
+  "posts": [
     // ... existing posts ...
     {
-        id: 'your-post-id',
-        title: 'Your Blog Post Title',
-        date: '2024-01-25',
-        tags: ['AI', 'Technology', 'Your Tag'],
-        filename: 'your-post-filename.md',
-        excerpt: 'Brief description of your post...'
+      "id": "your-post-id",
+      "title": "Your Blog Post Title",
+      "date": "2024-01-25",
+      "tags": ["AI", "Technology", "Your Tag"],
+      "filename": "your-post-filename.md",
+      "excerpt": "Brief description of your post..."
     }
-];
+  ]
+}
 ```
 
 ### 3. File Naming Convention

@@ -1,5 +1,3 @@
-# AI in Healthcare: Current Trends and Future Prospects
-
 ## Introduction
 
 Healthcare is undergoing a digital transformation, with artificial intelligence playing a pivotal role in improving patient outcomes and operational efficiency. From diagnostic imaging to drug discovery, AI is revolutionizing how we approach medical challenges.

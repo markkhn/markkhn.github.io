@@ -1,5 +1,3 @@
-# AI in Music Generation: From Theory to Practice
-
 ## Introduction
 
 Artificial intelligence is revolutionizing the music industry, from composition to performance. This post explores the fascinating intersection of AI and music, covering both theoretical concepts and practical implementations.

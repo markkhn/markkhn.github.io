@@ -1,0 +1,36 @@
+{
+  "posts": [
+    {
+      "id": "first-blog-post",
+      "title": "My First Blog Post",
+      "date": "2024-01-15",
+      "tags": ["AI", "Technology", "Research", "Music"],
+      "filename": "first-blog-post.md",
+      "excerpt": "Hello everyone! This is my first blog post where I'll be sharing my thoughts on artificial intelligence, technology, and my research journey."
+    },
+    {
+      "id": "deep-learning-radar",
+      "title": "Deep Learning in Radar Perception",
+      "date": "2024-01-20",
+      "tags": ["AI", "Deep Learning", "Radar", "Computer Vision"],
+      "filename": "deep-learning-radar.md",
+      "excerpt": "Exploring the applications of deep learning in radar signal processing and object detection."
+    },
+    {
+      "id": "ai-in-healthcare",
+      "title": "AI in Healthcare: Current Trends and Future Prospects",
+      "date": "2024-01-25",
+      "tags": ["AI", "Healthcare", "Technology", "Research"],
+      "filename": "ai-in-healthcare.md",
+      "excerpt": "Exploring the intersection of AI and healthcare, covering current applications and future prospects."
+    },
+    {
+      "id": "ai-music-generation",
+      "title": "AI in Music Generation: From Theory to Practice",
+      "date": "2024-01-30",
+      "tags": ["AI", "Music", "Technology", "Research"],
+      "filename": "ai-music-generation.md",
+      "excerpt": "Exploring the fascinating intersection of AI and music, covering both theoretical concepts and practical implementations."
+    }
+  ]
+} 

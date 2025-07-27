@@ -1,5 +1,3 @@
-# Deep Learning in Radar Perception
-
 Exploring the applications of deep learning in radar signal processing and object detection.
 
 ## Introduction
