@@ -1,0 +1,64 @@
+{
+  "tags": [
+    {
+      "name": "AI",
+      "description": "Artificial Intelligence",
+      "color": "#007bff",
+      "count": 4
+    },
+    {
+      "name": "Technology",
+      "description": "Technology and Innovation",
+      "color": "#28a745",
+      "count": 3
+    },
+    {
+      "name": "Research",
+      "description": "Research and Development",
+      "color": "#ffc107",
+      "count": 3
+    },
+    {
+      "name": "Deep Learning",
+      "description": "Deep Learning and Neural Networks",
+      "color": "#dc3545",
+      "count": 1
+    },
+    {
+      "name": "Computer Vision",
+      "description": "Computer Vision and Image Processing",
+      "color": "#6f42c1",
+      "count": 1
+    },
+    {
+      "name": "Healthcare",
+      "description": "Healthcare and Medical AI",
+      "color": "#fd7e14",
+      "count": 1
+    },
+    {
+      "name": "Radar",
+      "description": "Radar and Signal Processing",
+      "color": "#20c997",
+      "count": 1
+    },
+    {
+      "name": "Music",
+      "description": "Music and Audio Processing",
+      "color": "#e83e8c",
+      "count": 2
+    },
+    {
+      "name": "Toefl",
+      "description": "TOEFL and English Learning",
+      "color": "#6c757d",
+      "count": 0
+    },
+    {
+      "name": "Java",
+      "description": "Programming Language Java",
+      "color": "#FFA500",
+      "count": 1
+    }
+  ]
+}

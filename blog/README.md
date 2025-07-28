@@ -132,6 +132,37 @@ To add new features:
 2. Update the CSS as needed
 3. Test thoroughly
 
+### Adding New Tags
+
+To add new tags to the blog system:
+
+1. **Add tag button in index.html**:
+   Find the categories section and add:
+   ```html
+   <span class="badge tag-badge me-1 mb-1 filter-tag" data-tag="NewTag">NewTag</span>
+   ```
+
+2. **Use the tag in posts.json**:
+   ```json
+   {
+     "posts": [
+       {
+         "id": "your-post",
+         "title": "Your Post Title",
+         "date": "2024-01-25",
+         "tags": ["AI", "NewTag", "Technology"],
+         "filename": "your-post.md",
+         "excerpt": "Your excerpt..."
+       }
+     ]
+   }
+   ```
+
+3. **Tag naming conventions**:
+   - Use descriptive names (e.g., "Machine Learning" not "ML")
+   - Keep consistent capitalization
+   - Avoid special characters except spaces
+
 ## Tips for Writing Blog Posts
 
 1. **Use Clear Headers**: Structure your content with proper headers

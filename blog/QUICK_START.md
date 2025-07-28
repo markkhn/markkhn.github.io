@@ -102,6 +102,36 @@ blog/
 - Markdown文件不要写标题
 - 新标签需要在 `index.html` 中添加
 
+## 🏷️ 添加新标签
+
+### 1. 在博客主页添加标签按钮
+编辑 `blog/index.html`，在侧边栏的Categories部分添加：
+```html
+<span class="badge tag-badge me-1 mb-1 filter-tag" data-tag="新标签">新标签</span>
+```
+
+### 2. 在文章中使用新标签
+在 `blog/posts.json` 中为文章添加新标签：
+```json
+{
+  "posts": [
+    {
+      "id": "your-post",
+      "title": "Your Post Title",
+      "date": "2024-01-25",
+      "tags": ["AI", "新标签", "Technology"],
+      "filename": "your-post.md",
+      "excerpt": "Your excerpt..."
+    }
+  ]
+}
+```
+
+### 3. 标签命名规范
+- 使用描述性名称（如 "Machine Learning" 而不是 "ML"）
+- 保持大小写一致
+- 避免特殊字符，只使用空格
+
 ---
 
 *现在添加新文章只需要一个命令！* 
