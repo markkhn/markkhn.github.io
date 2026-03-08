@@ -7,9 +7,9 @@ tags:
 
 ## 1 电脑配置
 
-|操作系统|CPU|GPU|RAM|
-|:-----:|:-----:|:-----:|
-|Windows11|AMD Ryzen 9 8945HX|NVIDIA GeForce RTX 5060 Laptop GPU|32 GB DDR5 5200MHZ|
+| 操作系统 | CPU | GPU | RAM |
+| :-----: | :-----: | :-----: | :-----: |
+| Windows11 | AMD Ryzen 9 8945HX | NVIDIA GeForce RTX 5060 Laptop GPU | 32 GB DDR5 5200MHZ |
 
 
-## 2 
+## 2 安装Mujoco
